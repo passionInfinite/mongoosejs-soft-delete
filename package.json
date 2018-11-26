@@ -1,0 +1,25 @@
+{
+  "name": "mongoose-soft-delete",
+  "version": "1.0.0",
+  "description": "Plugin for mongoose soft delete",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/passionInfinite/mongoose-soft-delete.git"
+  },
+  "keywords": [
+    "mongoose;soft;delete"
+  ],
+  "author": "passioninfinite",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/passionInfinite/mongoose-soft-delete/issues"
+  },
+  "homepage": "https://github.com/passionInfinite/mongoose-soft-delete#readme",
+  "dependencies": {
+    "mongoose": "^5.3.13"
+  }
+}
