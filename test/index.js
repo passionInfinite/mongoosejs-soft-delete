@@ -34,6 +34,4 @@ describe("mongoose plugin without any opts passed to it", function () {
         response = await SampleModel.findByIdDeleted(doc._id);
         chai.expect(response).to.have.a.property('deleted').equal(true)
     })
-
-
 })

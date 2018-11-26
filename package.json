@@ -4,7 +4,7 @@
   "description": "Plugin for mongoose soft delete",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha \"test/**/*.@(js)\" --no-deprecation --reporter spec --exit"
   },
   "repository": {
     "type": "git",
