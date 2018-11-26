@@ -18,7 +18,7 @@ function getSoftDeleteSchema() {
 
 
 
-// mongoose.plugin(softDelete, { indexField: 'delete', deletedAt: 'custom date function'});
+// mongoose.plugin(softDelete, { index: 'delete', deletedAt: 'custom date function'});
 
 module.exports = exports = function softDelete(schema, opts) {
     opts = opts || {};
