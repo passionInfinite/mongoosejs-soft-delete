@@ -8,11 +8,13 @@ mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true })
 
 beforeEach(function (done) {
     if (mongoose.connection.readyState === 1) {
-        mongoose.connection.db.dropDatabase(done);
+        mongoose.connection.dropDatabase(done);
     } else {
         done()
     }
 });
+
+
 
 describe("mongoose plugin without any opts passed to it", function () {
     let SampleSchema = new mongoose.Schema({ test: Boolean }, { collection: 'samples' });
