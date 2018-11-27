@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "10.13.0"
+before_install:
+  - sudo apt-get update
+cache: npm
+services:
+  - mongodb
+stages:
+- test
+jobs:
+  include:
+  - stage: test
+    script: "npm run test"
+
