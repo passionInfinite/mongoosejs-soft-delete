@@ -1,5 +1,5 @@
 {
-  "name": "mongoose-soft-delete",
+  "name": "mongoose-delete-soft",
   "version": "1.0.0",
   "description": "Plugin for mongoose soft delete",
   "main": "index.js",
@@ -11,7 +11,11 @@
     "url": "git+https://github.com/passionInfinite/mongoose-soft-delete.git"
   },
   "keywords": [
-    "mongoose;soft;delete;mongoose-soft-delete;soft-delete"
+    "mongoose",
+    "soft",
+    "delete",
+    "mongoose-soft-delete",
+    "soft-delete"
   ],
   "author": "passioninfinite",
   "license": "ISC",
