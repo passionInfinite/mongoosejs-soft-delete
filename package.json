@@ -11,7 +11,7 @@
     "url": "git+https://github.com/passionInfinite/mongoose-soft-delete.git"
   },
   "keywords": [
-    "mongoose;soft;delete"
+    "mongoose;soft;delete;mongoose-soft-delete;soft-delete"
   ],
   "author": "passioninfinite",
   "license": "ISC",

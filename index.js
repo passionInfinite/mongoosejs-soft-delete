@@ -14,7 +14,12 @@ function setIndexFieldType(opts) {
 
 
 function getSoftDeleteSchema() {
-    return { [indexField]: eval(indexFieldType), deleted: true }
+    if (typeof indexFieldType === 'function') {
+        return { [indexField]: eval(indexFieldType), deleted: true }
+    }
+    else {
+        return { [indexField]: indexFieldType, deleted: true }
+    }
 }
 
 
@@ -25,31 +30,29 @@ module.exports = exports = function (schema, opts) {
     opts = opts || {};
 
     /*
-        For custom index field name
-        for example: instead of deletedAt => delete
-     */
-
-    if (opts.hasOwnProperty('index')) {
-        if (opts.index instanceof String ) {
-            indexField = opts.index;
-            if (typeof opts[indexField] === 'function' && opts.hasOwnProperty('type')) {
-                defaultType = opts.type
-            } else {
-                throw "If your index field is function then specify the type attribute showing the" +
-                " return type corresponding to the mongoose schema types."
-            }
-        } else {
-            throw "Index field should be a string only."
-        }
-    }
-
-    /*
         For custom index field value
         for example instead of deletedAt=true you can pass deletedAt=[custom date function]
         if you pass function to the index field you have to specify the type field which shows the return
         type of the custom function that is specified to the index field.
     */
     indexFieldType = setIndexFieldType(opts);
+    defaultType = typeof indexFieldType
+
+    /*
+        For custom index field name
+        for example: instead of deletedAt => delete
+     */
+    if (opts.hasOwnProperty('index')) {
+        if (opts.hasOwnProperty(opts.index)) {
+            if (typeof opts.index === 'string') {
+                indexField = opts.index;
+            } else {
+                throw "Index field should be a string only."
+            }
+        } else {
+            throw "Index field should be defined."
+        }
+    }
 
     if (indexFieldType && indexField) {
         schema.add({
@@ -58,7 +61,7 @@ module.exports = exports = function (schema, opts) {
                 index: true
             },
             deleted: {
-                type: 'Boolean',
+                type: Boolean,
                 default: false
             }
         });
@@ -69,7 +72,6 @@ module.exports = exports = function (schema, opts) {
 
     let overrideMethods = [
         'find',
-        'findById',
         'findByIdAndUpdate',
         'findOne',
         'findOneAndUpdate',
@@ -93,6 +95,13 @@ module.exports = exports = function (schema, opts) {
         };
     });
 
+    schema.statics.findById = function () {
+        return Model['findOne'].apply(this, {}).where('_id', arguments[0]).where('deleted').equals(false)
+    }
+
+    schema.statics.findByIdDeleted = function () {
+        return Model['findOne'].apply(this, {}).where('_id', arguments[0]).where('deleted').equals(true)
+    }
 
     schema.statics.findOneAndRemove = function (conditions, callback) {
         return this.findOneAndUpdate(conditions, getSoftDeleteSchema(), { new: true }, callback);
@@ -110,27 +119,18 @@ module.exports = exports = function (schema, opts) {
         return this.findByIdAndUpdate(id, getSoftDeleteSchema(), options, callback);
     };
 
-    schema.statics.deleteOne = function (conditions, options = {}, callback) {
+    schema.statics.removeOne = function (conditions, options = {}, callback) {
         return this.updateOne(conditions, getSoftDeleteSchema(), options, callback);
     };
 
-    schema.statics.deleteMany = function (conditions, options = {}, callback) {
+    schema.statics.removeMany = function (conditions, options = {}, callback) {
         return this.updateMany(conditions, getSoftDeleteSchema(), options, callback);
-    };
-
-
-    /*
-       This function will not do soft delete.
-       If you want to delete only one document pass the unique condition.
-    */
-    schema.statics.delete = function (conditions, options = {}, callback) {
-        return this.deleteMany(conditions, options, callback);
     };
 
     /*
        This function helps you to restore the soft deleted document based on the conditions.
      */
     schema.statics.restore = function (conditions, options = {}, callback) {
-        return this.updateMany(conditions, { [indexField]: null, deleted: false }, options, callback);
+        return this.updateManyWithDeleted(conditions, { [indexField]: null, deleted: false }, options, callback);
     };
 };
