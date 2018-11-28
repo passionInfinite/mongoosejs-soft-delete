@@ -1,42 +1,37 @@
 let mongoose = require('mongoose');
 let Model = mongoose.Model;
 
-let indexField = 'deletedAt';
-let indexFieldType = Date
-let defaultType = 'Date'
-
-function setIndexFieldType(opts) {
-    if (opts.hasOwnProperty(indexField) && opts[indexField] ) {
-        return opts[indexField];
-    }
-    return new Date();
-}
-
-
-function getSoftDeleteSchema() {
-    if (typeof indexFieldType === 'function') {
-        return { [indexField]: eval(indexFieldType), deleted: true }
-    }
-    else {
-        return { [indexField]: indexFieldType, deleted: true }
-    }
-}
-
-
-
-// mongoose.plugin(softDelete, { index: 'deleteAt', deletedAt: 'custom date function', type: 'Date'});
+// mongoose.plugin(softDelete, { index: 'deleteAt', deletedAt: 'custom date function' });
 
 module.exports = exports = function (schema, opts) {
     opts = opts || {};
 
+    let indexField = 'deletedAt';
+
+    function setIndexFieldType(opts) {
+        if (opts.hasOwnProperty(indexField) && opts[indexField] ) {
+            return opts[indexField];
+        }
+        return new Date();
+    }
+
+    function getSoftDeleteSchema() {
+        if (typeof indexFieldType === 'function') {
+            return { [indexField]: eval(indexFieldType), deleted: true }
+        }
+        else {
+            return { [indexField]: indexFieldType, deleted: true }
+        }
+    }
+
     /*
         For custom index field value
         for example instead of deletedAt=true you can pass deletedAt=[custom date function]
-        if you pass function to the index field you have to specify the type field which shows the return
-        type of the custom function that is specified to the index field.
+        if you pass function to the index field then make sure it returns types supported by the mongoose
+        schema types.
     */
-    indexFieldType = setIndexFieldType(opts);
-    defaultType = typeof indexFieldType
+    let indexFieldType = setIndexFieldType(opts);
+    let defaultType = typeof indexFieldType
 
     /*
         For custom index field name
