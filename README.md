@@ -8,7 +8,7 @@ This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delet
 
 
 # Installation
-Install using [npm](https://www.npmjs.com)
+Install using [npm](https://www.npmjs.com/package/mongoosejs-soft-delete)
 
 ```npm install mongoosejs-soft-delete```
 
