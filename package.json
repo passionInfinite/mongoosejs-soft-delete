@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/passionInfinite/mongoose-soft-delete.git"
+    "url": "git+https://github.com/passionInfinite/mongoosejs-soft-delete.git"
   },
   "keywords": [
     "mongoose",
@@ -20,9 +20,9 @@
   "author": "passioninfinite",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/passionInfinite/mongoose-soft-delete/issues"
+    "url": "https://github.com/passionInfinite/mongoosejs-soft-delete/issues"
   },
-  "homepage": "https://github.com/passionInfinite/mongoose-soft-delete#readme",
+  "homepage": "https://github.com/passionInfinite/mongoosejs-soft-delete#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
