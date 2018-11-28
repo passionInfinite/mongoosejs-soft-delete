@@ -7,15 +7,15 @@ This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delet
 
 
 
-#Installation
+# Installation
 Install using [npm](https://www.npmjs.com)
 
 ```npm install mongoosejs-soft-delete```
 
-#Usage
+# Usage
 You can use this plugin with or without passing the options to the plugin.
 
-#Basic Usage
+# Basic Usage
 
 ```
 let softDelete = require('mongoosejs-soft-delete');
@@ -53,7 +53,7 @@ Sample.deleteMany(conditions, callback);
 By Default, Basic usage will set the `deleted` and `deletedAt` field.
 The type of `deleted` field will be `Boolean` whereas `deletedAt` will have the current timestamp.
 
-#Second Usage
+# Second Usage
 
 If you want to change the default behaviour of the plugin. For example, instead
 of deletedAt you want to have custom field and the value of that custom field should be
@@ -108,7 +108,7 @@ Also you can directly assign certain value the index field value.
     SampleSchema.plugin(softDelete, { index: 'custom', custom: true });
 ```
 
-#Functions Available
+# Functions Available
 
 **We haven't override the mongoose deleteOne and deleteMany function
 so it will perform hard delete (not soft delete).**
@@ -148,7 +148,7 @@ The following method performs delete feature.
 | removeOne             | Soft Delete|
 | removeMany            | Soft Delete|
 
-#License
+# License
 Copyright <2018> [Hardik Patel](http://github.com/passioninfinite) and [Parth Patel](http://github.com/parth7676)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
