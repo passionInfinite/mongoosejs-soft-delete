@@ -18,7 +18,7 @@
     "soft-delete"
   ],
   "author": "passioninfinite",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/passionInfinite/mongoosejs-soft-delete/issues"
   },
