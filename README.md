@@ -1,6 +1,6 @@
-#Mongoosejs Soft Delete Plugin
+# Mongoosejs Soft Delete Plugin
 A lightweight plugin that enables the soft delete functionality for documents in MongoDB.
-This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delete)
+This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delete).
 
 [![Build Status](https://travis-ci.com/passionInfinite/mongoose-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoose-soft-delete)
 
@@ -50,10 +50,10 @@ Sample.deleteMany(conditions, callback);
 
 ```
 
-By Default, Basic usage will set the `deleted` and `deletedAt` field.
+By default, basic usage will set the `deleted` and `deletedAt` field.
 The type of `deleted` field will be `Boolean` whereas `deletedAt` will have the current timestamp.
 
-# Second Usage
+# Advance Usage
 
 If you want to change the default behaviour of the plugin. For example, instead
 of deletedAt you want to have custom field and the value of that custom field should be
@@ -126,6 +126,8 @@ Below table shows the functions that will do soft delete.
 |  removeMany        |  updateMany         |
 
 
+
+
 For the following method we have methods to query the non-soft-deleted documents,
 soft deleted (suffix: Deleted) document and both of the documents(suffix: withDeleted).
 
@@ -149,7 +151,7 @@ The following method performs delete feature.
 | removeMany            | Soft Delete|
 
 # License
-Copyright <2018> [Hardik Patel](http://github.com/passioninfinite) and [Parth Patel](http://github.com/parth7676)
+Copyright (c) 2018 [Hardik Patel](http://github.com/passioninfinite) and [Parth Patel](http://github.com/parth7676)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
 documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
