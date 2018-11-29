@@ -2,7 +2,7 @@
 A lightweight plugin that enables the soft delete functionality for documents in MongoDB.
 This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delete).
 
-[![Build Status](https://travis-ci.com/passionInfinite/mongoose-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoose-soft-delete)
+[![Build Status](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)
 
 
 
