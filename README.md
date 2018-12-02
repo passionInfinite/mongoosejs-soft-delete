@@ -2,8 +2,7 @@
 A lightweight plugin that enables the soft delete functionality for documents in MongoDB.
 This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delete).
 
-[![Build Status](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)
-
+[![Build Status](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete)
 
 
 
@@ -150,6 +149,43 @@ The following method performs delete feature.
 | removeOne             | Soft Delete|
 | removeMany            | Soft Delete|
 
+Using mongoose hooks for soft delete.
+There is always a case like you want to remove the related documents on soft delete
+then you can always use the below hook.
+
+**Note: This hook is only useful if you call removeOne and removeMany and
+ always passing the required constraint for fetching relational data**
+
+```
+   let softDelete = require('mongoosejs-soft-delete');
+   let SampleSchema = new mongoose.Schema({
+       comment: String
+   })
+   
+   SampleSchema.plugin(softDelete);
+   
+   //This hook will run if you use Model.removeOne() method.
+   SampleSchema.post('updateOne', async function() {
+        if (this._update.deleted) {
+            //this doc is deleted so you can easily perform clean up here.
+        }
+   });
+   
+   
+   //This hook will run if you use Model.removeMany() method.
+   SampleSchema.post('updateMany', async function() {
+        if (this._update.deleted) {
+            //do your clean up work.
+        }
+   });
+ 
+```
+
+Also, you can use the `_conditions` to the query parameters
+that you passed while calling the removeMany or removeOne method.
+
+ 
+ 
 # License
 Copyright (c) 2018 [Hardik Patel](http://github.com/passioninfinite) and [Parth Patel](http://github.com/parth7676)
 
