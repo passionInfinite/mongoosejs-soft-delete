@@ -1,10 +1,27 @@
 # Mongoosejs Soft Delete Plugin
+[![Build Status](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete)
+[![GitHub license](https://img.shields.io/github/license/passionInfinite/mongoosejs-soft-delete.svg)](https://github.com/passionInfinite/mongoosejs-soft-delete/blob/master/LICENSE)
+
 A lightweight plugin that enables the soft delete functionality for documents in MongoDB.
 This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delete).
 
-[![Build Status](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete)
+### Usage Guidelines
 
+* [Basic Usage](https://github.com/passionInfinite/mongoosejs-soft-delete#basic-usage)
+* [Advance Usage](https://github.com/passionInfinite/mongoosejs-soft-delete#advance-usage)
 
+### How it Works
+    
+* [Functions performing with Mongoose](https://github.com/passionInfinite/mongoosejs-soft-delete#how-it-works)
+
+### Functions Support
+
+* [Find and update functions](https://github.com/passionInfinite/mongoosejs-soft-delete#functions-available)
+* [Hard and soft delete functions](https://github.com/passionInfinite/mongoosejs-soft-delete)
+
+### Handling Hooks
+
+* [removeMany and removeOne hooks](https://github.com/passionInfinite/mongoosejs-soft-delete#hooks)
 
 # Installation
 Install using [npm](https://www.npmjs.com/package/mongoosejs-soft-delete)
@@ -14,7 +31,7 @@ Install using [npm](https://www.npmjs.com/package/mongoosejs-soft-delete)
 # Usage
 You can use this plugin with or without passing the options to the plugin.
 
-# Basic Usage
+### Basic Usage
 
 ```
 let softDelete = require('mongoosejs-soft-delete');
@@ -52,7 +69,7 @@ Sample.deleteMany(conditions, callback);
 By default, basic usage will set the `deleted` and `deletedAt` field.
 The type of `deleted` field will be `Boolean` whereas `deletedAt` will have the current timestamp.
 
-# Advance Usage
+### Advance Usage
 
 If you want to change the default behaviour of the plugin. For example, instead
 of deletedAt you want to have custom field and the value of that custom field should be
@@ -106,8 +123,7 @@ Also you can directly assign certain value the index field value.
 ```
     SampleSchema.plugin(softDelete, { index: 'custom', custom: true });
 ```
-
-# Functions Available
+# How it works
 
 **We haven't override the mongoose deleteOne and deleteMany function
 so it will perform hard delete (not soft delete).**
@@ -125,6 +141,8 @@ Below table shows the functions that will do soft delete.
 |  removeMany        |  updateMany         |
 
 
+# Functions Support
+
 
 
 For the following method we have methods to query the non-soft-deleted documents,
@@ -140,6 +158,8 @@ soft deleted (suffix: Deleted) document and both of the documents(suffix: withDe
 |updateMany             |    updateManyDeleted        |  updateManyWithDeleted        |
 |updateOne              |    updateOneDeleted         |  updateOneWithDeleted         |
 
+### Hard and soft delete functions
+
 The following method performs delete feature.
 
 | Function              | Type       |      
@@ -148,6 +168,9 @@ The following method performs delete feature.
 | deleteMany            | Hard Delete|
 | removeOne             | Soft Delete|
 | removeMany            | Soft Delete|
+
+
+### Hooks
 
 Using mongoose hooks for soft delete.
 There is always a case like you want to remove the related documents on soft delete
@@ -188,16 +211,4 @@ that you passed while calling the removeMany or removeOne method.
  
 # License
 Copyright (c) 2018 [Hardik Patel](http://github.com/passioninfinite) and [Parth Patel](http://github.com/parth7676)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
-documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
-Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Code released under [MIT](https://github.com/passionInfinite/mongoosejs-soft-delete/blob/master/LICENSE)
