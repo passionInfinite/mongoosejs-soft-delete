@@ -4,7 +4,6 @@ This code is based on [mongoose-delete](https://github.com/dsanel/mongoose-delet
 
 [![Build Status](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)](https://travis-ci.com/passionInfinite/mongoosejs-soft-delete.svg?branch=master)
 
-
 # Installation
 Install using [npm](https://www.npmjs.com/package/mongoosejs-soft-delete)
 
