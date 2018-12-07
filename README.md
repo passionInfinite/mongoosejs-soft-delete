@@ -33,7 +33,7 @@ You can use this plugin with or without passing the options to the plugin.
 
 ### Basic Usage
 
-```
+```js
 let softDelete = require('mongoosejs-soft-delete');
 let SampleSchema = new mongoose.Schema({
     comment: String
@@ -75,7 +75,7 @@ If you want to change the default behaviour of the plugin. For example, instead
 of deletedAt you want to have custom field and the value of that custom field should be
 a custom function then you can use this second option.
 
-```
+```js
 let softDelete = require('mongoosejs-soft-delete');
 let SampleSchema = new mongoose.Schema({
     comment: String
@@ -179,7 +179,7 @@ then you can always use the below hook.
 **Note: This hook is only useful if you call removeOne and removeMany and
  always passing the required constraint for fetching relational data**
 
-```
+```js
    let softDelete = require('mongoosejs-soft-delete');
    let SampleSchema = new mongoose.Schema({
        comment: String
